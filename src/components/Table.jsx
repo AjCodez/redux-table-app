@@ -11,15 +11,43 @@ function Table() {
     return (
         <>
             <div>
-                {dataset.length > 0 ? <TableSchema id={dataset[idx].id} name={dataset[idx].name} email={dataset[idx].email} phone={dataset[idx].phone} /> : 'No Data'}
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>email</th>
+                            <th>phone</th>
+                            <th>edit</th>
+                            <th>delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {dataset.length > 0 ? <TableSchema id={dataset[idx].id} name={dataset[idx].name} email={dataset[idx].email} phone={dataset[idx].phone} /> : 'No Data'}
+                    </tbody>
+                </table>
                 {dataset.length > 0 ? <button onClick={() => setIdx(prevIdx => prevIdx === dataset.length - 1 ? 0 : idx + 1)}>Switch Data</button> : ''}
             </div>
             <br />
             <br />
-            <br />   
+            <br />
             <div>
-                {dataset.map( 
-                    idx=><TableSchema id={idx.id} name={idx.name} email={idx.email} phone={idx.phone} />)}
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>email</th>
+                            <th>phone</th>
+                            <th>edit</th>
+                            <th>delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {dataset.map(
+                            idx => <TableSchema id={idx.id} name={idx.name} email={idx.email} phone={idx.phone} />)}
+                    </tbody>
+                </table>
             </div>
         </>
 
