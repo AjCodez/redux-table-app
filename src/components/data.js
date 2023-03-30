@@ -3,25 +3,25 @@ import { combineReducers } from "@reduxjs/toolkit";
 const initialState = [
     {
         "id": 1,
-        "name": "Ajit Singhal",
+        "name": "Ajit 1",
         "email": "ajitsinghal@gmail.com",
         "phone": "1234567890",
     },
     {
         "id": 2,
-        "name": "Nitin Singh",
+        "name": "Nitin 1",
         "email": "nitinsingh@gmail.com",
         "phone": "9876543210",
     },
     {
         "id": 3,
-        "name": "Ajit Singhal",
+        "name": "Ajit 3",
         "email": "ajitsinghal@gmail.com",
         "phone": "1234567890",
     },
     {
         "id": 4,
-        "name": "Nitin Singh",
+        "name": "Nitin 2",
         "email": "nitinsingh@gmail.com",
         "phone": "9876543210",
     },

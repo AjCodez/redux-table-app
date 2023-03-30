@@ -1,19 +1,16 @@
-import React, { useRef, useState } from 'react'
+import React, { useRef, useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 import { actions } from './index';
 
 function Edit(props) {
+  
   const dispatch = useDispatch();
-  const ref = useRef(null);
   const [data, setData] = useState({ id: "", name: "", email: "", phone: "" });
   const handleEditClick = () => {
-    ref.current.click();
-    setData({ id: "", name: "", email: "", phone: "" })
-    setData(props.data);
-    console.log(props.data);
+    setData({id:props.data.id, name: props.data.name, email: props.data.email, phone: props.data.phone});
+    console.log(data);
   }
   const handleChange = (e) => {
-    e.preventDefault();
     setData({ ...data, [e.target.name]: e.target.value });
   }
   const handleSubmit = (e) => {
@@ -23,8 +20,8 @@ function Edit(props) {
   }
   return (
     <div>
-      <button onClick={handleEditClick} >edit</button>
-      <button ref={ref} className="btn btn-primary d-none" data-bs-toggle="modal" data-bs-target="#editModal">
+      {/* <button  >edit</button> */}
+      <button onClick={handleEditClick} data-bs-toggle="modal" data-bs-target="#editModal"> edit
       </button>
       <div className="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div className="modal-dialog">
