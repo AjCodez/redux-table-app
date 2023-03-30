@@ -1,24 +1,10 @@
 import React from 'react';
 import Delete from './Delete';
-import Edit from './Edit';
 
 function TableSchema(props) {
-    var row;
-    const start = (e) => {
-        row = e.target
-    }
-    const dragover = (e) => {
-        e.preventDefault();
-        let children = Array.from(e.target.parentNode.parentNode.children);
-        if (children.indexOf(e.target.parentNode) > children.indexOf(row)) {
-            e.target.parentNode.after(row);
-        }
-        else {
-            e.target.parentNode.before(row);
-        }
-    }
+    
     return (
-        <tr draggable={true} onDragStart={start} onDragOver={dragover}>
+        <tr draggable={true} onDragStart={(e)=>props.handleDragStart(e,props.index)} onDragOver={(e) => props.handleDragOver(e, props.index)} onDrop={(e) => props.handleDrop(e, props.index)}>
             <td>{props.id}</td>
             <td>{props.name}</td>
             <td>{props.email}</td>

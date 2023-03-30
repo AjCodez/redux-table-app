@@ -6,9 +6,30 @@ import { actions } from './index';
 
 function Table() {
     const ref = useRef(null);
-    const dataset = useSelector((state) => {
+    const datas = useSelector((state) => {
         return state.data;
     })
+    const [dataset, setDataset] = useState(datas);
+    function handleDragStart(e, index) {
+        e.dataTransfer.setData('text/plain', index);
+        e.dataTransfer.effectAllowed = 'move';
+      }
+    
+      function handleDragOver(e, index) {
+        e.preventDefault();
+        e.dataTransfer.dropEffect = 'move';
+      }
+    
+      function handleDrop(e, index) {
+        e.preventDefault();
+        const sourceIndex = e.dataTransfer.getData('text/plain');
+        if (sourceIndex !== index) {
+          const datasetCopy = [...dataset];
+          const [removed] = datasetCopy.splice(sourceIndex, 1);
+          datasetCopy.splice(index, 0, removed);
+          setDataset(datasetCopy);
+        }
+      }
     const [idx, setIdx] = useState(0);
     const [data, setData] = useState({ id: "", name: "", email: "", phone: "" });
     const dispatch = useDispatch();
@@ -143,7 +164,7 @@ function Table() {
                     </thead>
                     <tbody>
                         {dataset.map(
-                            (idx, idxx, ar) => <TableSchema handleEditClick={handleEditClick} data={ar[idxx]} id={idx.id} name={idx.name} email={idx.email} phone={idx.phone} />)}
+                            (idx, idxx, ar) => <TableSchema key={idx.id} index={idxx} handleDragStart={handleDragStart} handleDragOver={handleDragOver} handleDrop={handleDrop} handleEditClick={handleEditClick} data={ar[idxx]} id={idx.id} name={idx.name} email={idx.email} phone={idx.phone} />)}
                     </tbody>
                 </table>
             </div>
