@@ -1,14 +1,17 @@
 import React from 'react'
-import { useDispatch, useSelector } from "react-redux";
-import {actions} from "./index";
+import { useDispatch } from "react-redux";
+import { actions } from "./index";
 // import { bindActionCreators } from "@reduxjs/toolkit";
 
 function Delete(props) {
-    const dataset = useSelector(state => state.data);
-    const dispatch = useDispatch();
+
+  const handleDelete = () => {
+    dispatch(actions.removeData(props.id));
+  }
+  const dispatch = useDispatch();
   return (
     <div>
-        <button onClick={()=>{dispatch(actions.removeData(props.id))}}>delete</button>
+      <button onClick={handleDelete}>delete</button>
     </div>
   )
 }

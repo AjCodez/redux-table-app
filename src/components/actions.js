@@ -10,7 +10,7 @@ export const addData = (data) => {
 export const removeData = (id) => {
     return (dispatch) => {
         dispatch({
-            type: "REMOVE_DATA",
+            type: "DELETE_DATA",
             payload: id,
         })
     }

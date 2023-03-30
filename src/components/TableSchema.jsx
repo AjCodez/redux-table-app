@@ -23,7 +23,7 @@ function TableSchema(props) {
             <td>{props.name}</td>
             <td>{props.email}</td>
             <td>{props.phone}</td>
-            <td><button onClick={()=>{props.handleEditClick(props.data)}}></button></td>
+            <td><button onClick={()=>{props.handleEditClick(props.data)}}>edit</button></td>
             <td><Delete id={props.id} /></td>
         </tr>
     )

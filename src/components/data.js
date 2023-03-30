@@ -28,14 +28,17 @@ const initialState = [
 ]
 
 const reducer = (state = initialState, action) => {
-    if (action.type === 'ADD_DATA') {
+    switch(action.type) {
+    case ('ADD_DATA'): {
+        console.log("here0");
         return [...state, action.payload];
     }
-    else if ('DELETE_DATA') {
+    case ('DELETE_DATA'): {
         console.log("here");
         return state.filter((item) => item.id !== action.payload);
     }
-    else if ('EDIT_DATA') {
+    case ('EDIT_DATA'): {
+        console.log("here2");
         return state.map((item) => {
             if (item.id === action.payload.id) {
                 return action.payload;
@@ -43,10 +46,10 @@ const reducer = (state = initialState, action) => {
             return item;
         });
     }
-    else {
+    default: {
         return state;
     }
-}
+}}
 
 const reducers = combineReducers({
     data: reducer,
