@@ -8,8 +8,9 @@ function Edit(props) {
   const [data, setData] = useState({ id: "", name: "", email: "", phone: "" });
   const handleEditClick = () => {
     ref.current.click();
+    setData({ id: "", name: "", email: "", phone: "" })
     setData(props.data);
-    console.log(data);
+    console.log(props.data);
   }
   const handleChange = (e) => {
     e.preventDefault();
@@ -17,7 +18,8 @@ function Edit(props) {
   }
   const handleSubmit = (e) => {
     e.preventDefault();
-    ;
+    console.log(data);
+    dispatch(actions.editData(data));
   }
   return (
     <div>
@@ -49,7 +51,7 @@ function Edit(props) {
             </div>
             <div className="modal-footer">
               <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="button" className="btn btn-primary" onClick={()=>{dispatch(actions.editData(data))}}>Save changes</button>
+              <button type="button" className="btn btn-primary" onClick={handleSubmit}>Save changes</button>
             </div>
           </div>
         </div>

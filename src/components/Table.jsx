@@ -45,7 +45,7 @@ function Table() {
                     </thead>
                     <tbody>
                         {dataset.map(
-                            idx => <TableSchema data={idx} id={idx.id} name={idx.name} email={idx.email} phone={idx.phone} />)}
+                            (idx,idxx,ar) => <TableSchema data={ar[idxx]} id={idx.id} name={idx.name} email={idx.email} phone={idx.phone} />)}
                     </tbody>
                 </table>
             </div>

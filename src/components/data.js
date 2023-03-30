@@ -38,10 +38,7 @@ const reducer = (state = initialState, action) => {
     else if ('EDIT_DATA') {
         return state.map((item) => {
             if (item.id === action.payload.id) {
-                return {
-                    ...item,
-                    ...action.payload,
-                };
+                return action.payload;
             }
             return item;
         });
