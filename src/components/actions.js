@@ -17,8 +17,10 @@ export const removeData = (id) => {
 }
 
 export const editData = (data) => {
-    return {
-        type: "EDIT_DATA",
-        payload: data,
+    return (dispatch) => {
+        dispatch({
+            type: "EDIT_DATA",
+            payload: data,
+        })
     }
 }

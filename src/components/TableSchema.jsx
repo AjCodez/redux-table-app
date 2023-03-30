@@ -23,7 +23,7 @@ function TableSchema(props) {
             <td>{props.name}</td>
             <td>{props.email}</td>
             <td>{props.phone}</td>
-            <td><Edit id={props.id} /></td>
+            <td><Edit data={props.data} /></td>
             <td><Delete id={props.id} /></td>
         </tr>
     )

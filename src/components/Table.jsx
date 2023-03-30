@@ -23,7 +23,7 @@ function Table() {
                         </tr>
                     </thead>
                     <tbody>
-                        {dataset.length > 0 ? <TableSchema id={dataset[idx].id} name={dataset[idx].name} email={dataset[idx].email} phone={dataset[idx].phone} /> : 'No Data'}
+                        {dataset.length > 0 ? <TableSchema data={dataset[idx]} id={dataset[idx].id} name={dataset[idx].name} email={dataset[idx].email} phone={dataset[idx].phone} /> : 'No Data'}
                     </tbody>
                 </table>
                 {dataset.length > 0 ? <button onClick={() => setIdx(prevIdx => prevIdx === dataset.length - 1 ? 0 : idx + 1)}>Switch Data</button> : ''}
@@ -45,7 +45,7 @@ function Table() {
                     </thead>
                     <tbody>
                         {dataset.map(
-                            idx => <TableSchema id={idx.id} name={idx.name} email={idx.email} phone={idx.phone} />)}
+                            idx => <TableSchema data={idx} id={idx.id} name={idx.name} email={idx.email} phone={idx.phone} />)}
                     </tbody>
                 </table>
             </div>
