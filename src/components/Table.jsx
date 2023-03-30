@@ -13,23 +13,23 @@ function Table() {
     function handleDragStart(e, index) {
         e.dataTransfer.setData('text/plain', index);
         e.dataTransfer.effectAllowed = 'move';
-      }
-    
-      function handleDragOver(e, index) {
+    }
+
+    function handleDragOver(e, index) {
         e.preventDefault();
         e.dataTransfer.dropEffect = 'move';
-      }
-    
-      function handleDrop(e, index) {
+    }
+
+    function handleDrop(e, index) {
         e.preventDefault();
         const sourceIndex = e.dataTransfer.getData('text/plain');
         if (sourceIndex !== index) {
-          const datasetCopy = [...dataset];
-          const [removed] = datasetCopy.splice(sourceIndex, 1);
-          datasetCopy.splice(index, 0, removed);
-          setDataset(datasetCopy);
+            const datasetCopy = [...dataset];
+            const [removed] = datasetCopy.splice(sourceIndex, 1);
+            datasetCopy.splice(index, 0, removed);
+            setDataset(datasetCopy);
         }
-      }
+    }
     const [idx, setIdx] = useState(0);
     const [data, setData] = useState({ id: "", name: "", email: "", phone: "" });
     const dispatch = useDispatch();
@@ -52,19 +52,19 @@ function Table() {
         alert("failed");
     }
     const handleAddClick = () => {
-        setData({ id: dataset.length+1, name: "", email: "", phone: "" });
+        setData({ id: dataset.length + 1, name: "", email: "", phone: "" });
     }
     const handleAddSubmit = (e) => {
         e.preventDefault();
         console.log(dataset.length);
-        setData({id: dataset.length+1 , name: data.name, email: data.email, phone: data.phone });
+        setData({ id: dataset.length + 1, name: data.name, email: data.email, phone: data.phone });
         dispatch(actions.addData(data));
         alert("Data added successfully");
     }
     return (
         <>
-        <br />
-        <button data-bs-toggle="modal" data-bs-target="#addModal" onClick={handleAddClick}> Add Data</button>
+            <br />
+            <button data-bs-toggle="modal" data-bs-target="#addModal" onClick={handleAddClick}> Add Data</button>
             <div className="modal fade" id="addModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div className="modal-dialog">
                     <div className="modal-content">
@@ -97,7 +97,7 @@ function Table() {
             </div>
             <br />
             <br />
-        {/* Edit Modal */}
+            {/* Edit Modal */}
             <button ref={ref} className='btn d-hide' data-bs-toggle="modal" data-bs-target="#editModal"></button>
             <div className="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div className="modal-dialog">
@@ -142,7 +142,21 @@ function Table() {
                         </tr>
                     </thead>
                     <tbody>
-                        {dataset.length > 0 ? <TableSchema handleEditClick={handleEditClick} data={dataset[idx]} id={dataset[idx].id} name={dataset[idx].name} email={dataset[idx].email} phone={dataset[idx].phone} /> : 'No Data'}
+                        {dataset.length > 0 ?
+                            <TableSchema
+                                key={dataset[idx].id}
+                                index={idx}
+                                handleDragStart={handleDragStart}
+                                handleDragOver={handleDragOver}
+                                handleDrop={handleDrop}
+                                handleEditClick={handleEditClick}
+                                data={dataset[idx]}
+                                id={dataset[idx].id}
+                                name={dataset[idx].name}
+                                email={dataset[idx].email}
+                                phone={dataset[idx].phone}
+                            /> :
+                            'No Data'}
                     </tbody>
                 </table>
                 {dataset.length > 0 ? <button onClick={() => setIdx(prevIdx => prevIdx === dataset.length - 1 ? 0 : idx + 1)}>Switch Data</button> : ''}
@@ -164,7 +178,20 @@ function Table() {
                     </thead>
                     <tbody>
                         {dataset.map(
-                            (idx, idxx, ar) => <TableSchema key={idx.id} index={idxx} handleDragStart={handleDragStart} handleDragOver={handleDragOver} handleDrop={handleDrop} handleEditClick={handleEditClick} data={ar[idxx]} id={idx.id} name={idx.name} email={idx.email} phone={idx.phone} />)}
+                            (idx, idxx, ar) =>
+                                <TableSchema
+                                    key={idx.id}
+                                    index={idxx}
+                                    handleDragStart={handleDragStart}
+                                    handleDragOver={handleDragOver}
+                                    handleDrop={handleDrop}
+                                    handleEditClick={handleEditClick}
+                                    data={ar[idxx]}
+                                    id={idx.id}
+                                    name={idx.name}
+                                    email={idx.email}
+                                    phone={idx.phone}
+                                />)}
                     </tbody>
                 </table>
             </div>

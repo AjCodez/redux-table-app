@@ -3,11 +3,11 @@ import { useSelector, useDispatch } from 'react-redux';
 import { actions } from './index';
 
 function Edit(props) {
-  
+
   const dispatch = useDispatch();
   const [data, setData] = useState({ id: "", name: "", email: "", phone: "" });
   const handleEditClick = () => {
-    setData({id:props.data.id, name: props.data.name, email: props.data.email, phone: props.data.phone});
+    setData({ id: props.data.id, name: props.data.name, email: props.data.email, phone: props.data.phone });
     console.log(data);
   }
   const handleChange = (e) => {
