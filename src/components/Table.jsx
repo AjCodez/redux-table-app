@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import TableSchema from './TableSchema'
 // import dataset from './data'
 import { useSelector, useDispatch } from 'react-redux';
@@ -9,8 +9,12 @@ function Table() {
     const datas = useSelector((state) => {
         return state.data;
     })
+    useEffect(() => {
+        setDataset(datas);
+    }, [datas])
     const [dataset, setDataset] = useState(datas);
     function handleDragStart(e, index) {
+        console.log(e);
         e.dataTransfer.setData('text/plain', index);
         e.dataTransfer.effectAllowed = 'move';
     }

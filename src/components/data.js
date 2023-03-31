@@ -34,7 +34,7 @@ const reducer = (state = initialState, action) => {
             return [...state, action.payload];
         }
         case ('DELETE_DATA'): {
-            console.log("here");
+            console.log("here1");
             return state.filter((item) => item.id !== action.payload);
         }
         case ('EDIT_DATA'): {
