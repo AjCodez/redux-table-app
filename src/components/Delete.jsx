@@ -5,7 +5,7 @@ import { actions } from "./index";
 
 function Delete(props) {
     const handleDelete = () => {
-        dispatch(actions.removeData(props.id));
+        dispatch(actions.deleteUser(props.id));
     };
     const dispatch = useDispatch();
     return (
