@@ -1,7 +1,4 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import createSagaMiddleware from "redux-saga";
-
-const sagaMiddleware = createSagaMiddleware();
 export const getData = createAsyncThunk("data/getData", async () => {
     return fetch("https://jsonplaceholder.typicode.com/users").then((res) =>
         res.json()
